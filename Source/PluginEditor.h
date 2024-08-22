@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include <string.h> 
+#include "Knob.h"
 
 //==============================================================================
 /**
@@ -29,24 +30,25 @@ private:
     DopplerEffectAudioProcessor& audioProcessor;
 
     juce::ImageComponent myImageComponent;
+    juce::Image filmStrip = juce::ImageCache::getFromMemory(BinaryData::knobstrip_bmp, BinaryData::knobstrip_bmpSize);
 
     // cycleTime
 
-    juce::Slider cycleTimeSlider;
+    Knob cycleTimeSlider = Knob(filmStrip);
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>
         cycleTimeAttachment;
     juce::Label cycleTimeLabel;
 
     // maxDistance
 
-    juce::Slider maxDistanceSlider;
+    Knob maxDistanceSlider = Knob(filmStrip);
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>
         maxDistanceAttachment;
     juce::Label maxDistanceLabel;
 
     // vanishingPoint
 
-    juce::Slider vanishingPointSlider;
+    Knob vanishingPointSlider = Knob(filmStrip);
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>
         vanishingPointAttachment;
     juce::Label vanishingPointLabel;

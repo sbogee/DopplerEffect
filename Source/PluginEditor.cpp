@@ -13,7 +13,7 @@
 DopplerEffectAudioProcessorEditor::DopplerEffectAudioProcessorEditor(DopplerEffectAudioProcessor& p, juce::AudioProcessorValueTreeState& vts)
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
-    juce::Image background = juce::ImageCache::getFromMemory(BinaryData::schwingen_png, BinaryData::schwingen_pngSize);
+    juce::Image background = juce::ImageCache::getFromMemory(BinaryData::vst_png, BinaryData::vst_pngSize);
 
     if (!background.isNull())
     {
@@ -33,8 +33,9 @@ DopplerEffectAudioProcessorEditor::DopplerEffectAudioProcessorEditor(DopplerEffe
     cycleTimeAttachment.reset(
         new juce::AudioProcessorValueTreeState::SliderAttachment(
             vts, "cycle_time", cycleTimeSlider));
+    cycleTimeSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
 
-    addAndMakeVisible(cycleTimeLabel);
+    //addAndMakeVisible(cycleTimeLabel);
     cycleTimeLabel.setText("Cycle Time",
         juce::dontSendNotification);
 
@@ -46,8 +47,9 @@ DopplerEffectAudioProcessorEditor::DopplerEffectAudioProcessorEditor(DopplerEffe
     maxDistanceAttachment.reset(
         new juce::AudioProcessorValueTreeState::SliderAttachment(
             vts, "max_distance", maxDistanceSlider));
+    maxDistanceSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
 
-    addAndMakeVisible(maxDistanceLabel);
+    //addAndMakeVisible(maxDistanceLabel);
     maxDistanceLabel.setText("Amplitude",
         juce::dontSendNotification);
 
@@ -59,25 +61,26 @@ DopplerEffectAudioProcessorEditor::DopplerEffectAudioProcessorEditor(DopplerEffe
     vanishingPointAttachment.reset(
         new juce::AudioProcessorValueTreeState::SliderAttachment(
             vts, "vanishing_point", vanishingPointSlider));
+    vanishingPointSlider.setTextBoxStyle(juce::Slider::TextEntryBoxPosition::NoTextBox, true, 0, 0);
 
-    addAndMakeVisible(vanishingPointLabel);
+    //addAndMakeVisible(vanishingPointLabel);
     vanishingPointLabel.setText("Vanishing point",
         juce::dontSendNotification);
 
     // infiniteVanishingPoint
 
-    addAndMakeVisible(infiniteButton);
+    //addAndMakeVisible(infiniteButton);
     infiniteAttachment.reset(
         new juce::AudioProcessorValueTreeState::
         ButtonAttachment(vts, "infinite", infiniteButton));
 
-    addAndMakeVisible(infiniteButtonLabel);
+    //addAndMakeVisible(infiniteButtonLabel);
     infiniteButtonLabel.setText("Infinite vanishing point", juce::dontSendNotification);
 
-    addAndMakeVisible(bpmLabel);
+    //addAndMakeVisible(bpmLabel);
     bpmLabel.setText("BPM: ", juce::dontSendNotification);
 
-    setSize(550, 400);
+    setSize(800, 480);
 
     
 }
@@ -104,17 +107,17 @@ void DopplerEffectAudioProcessorEditor::paint(juce::Graphics& g)
 
 void DopplerEffectAudioProcessorEditor::resized()
 {
-    cycleTimeSlider.setBounds({ 180, 25, 100, 250 });
+    cycleTimeSlider.setBounds({ 100, 100, 120, 120 });
     cycleTimeLabel.setBounds({ cycleTimeSlider.getX()+40,
                                     cycleTimeSlider.getY() - 30,
                                     200, 50 });
 
-    maxDistanceSlider.setBounds({ 280, 25, 100, 250 });
+    maxDistanceSlider.setBounds({ 300, 100, 120, 120 });
     maxDistanceLabel.setBounds({ maxDistanceSlider.getX()+40,
                                     maxDistanceSlider.getY() - 30,
                                     200, 50 });
 
-    vanishingPointSlider.setBounds({ 380, 25, 100, 250 });
+    vanishingPointSlider.setBounds({ 500, 100, 120, 120 });
     vanishingPointLabel.setBounds({ vanishingPointSlider.getX()+40,
                                     vanishingPointSlider.getY() - 30,
                                     200, 50 });

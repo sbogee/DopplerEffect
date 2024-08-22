@@ -28,6 +28,8 @@ public:
 private:
     DopplerEffectAudioProcessor& audioProcessor;
 
+    juce::ImageComponent myImageComponent;
+
     // cycleTime
 
     juce::Slider cycleTimeSlider;

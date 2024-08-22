@@ -2,8 +2,11 @@
 
 <JUCERPROJECT id="wbnVEe" name="DopplerEffect" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" pluginFormats="buildVST3"
-              cppLanguageStandard="20">
+              cppLanguageStandard="20" includeBinaryInJuceHeader="1">
   <MAINGROUP id="cJudeN" name="DopplerEffect">
+    <GROUP id="{5D7E16EF-F949-47AC-AB7F-B80B4B13EEAB}" name="Resources">
+      <FILE id="SKv8yf" name="schwingen.png" compile="0" resource="1" file="Source/schwingen.png"/>
+    </GROUP>
     <GROUP id="{F0A2721E-8225-51E6-A1B3-05C22007A18A}" name="Source">
       <FILE id="C8tftA" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -24,6 +27,7 @@
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
@@ -49,6 +53,7 @@
         <MODULEPATH id="juce_graphics" path="../../Downloads/juce-8.0.0-windows (1)/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../Downloads/juce-8.0.0-windows (1)/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../Downloads/juce-8.0.0-windows (1)/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../juce-8.0.0-windows (1)/JUCE/modules"/>
       </MODULEPATHS>
     </VS2022>
   </EXPORTFORMATS>

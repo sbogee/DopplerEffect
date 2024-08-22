@@ -13,6 +13,18 @@
 DopplerEffectAudioProcessorEditor::DopplerEffectAudioProcessorEditor(DopplerEffectAudioProcessor& p, juce::AudioProcessorValueTreeState& vts)
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
+    juce::Image background = juce::ImageCache::getFromMemory(BinaryData::schwingen_png, BinaryData::schwingen_pngSize);
+
+    if (!background.isNull())
+    {
+        myImageComponent.setImage(background, juce::RectanglePlacement::stretchToFit);
+    }
+    else
+    {
+        jassert(!background.isNull());
+    }
+
+    addAndMakeVisible(myImageComponent);
     // cycleTime
 
     addAndMakeVisible(cycleTimeSlider);
@@ -65,7 +77,9 @@ DopplerEffectAudioProcessorEditor::DopplerEffectAudioProcessorEditor(DopplerEffe
     addAndMakeVisible(bpmLabel);
     bpmLabel.setText("BPM: ", juce::dontSendNotification);
 
-    setSize(480, 400);;
+    setSize(550, 400);
+
+    
 }
 
 DopplerEffectAudioProcessorEditor::~DopplerEffectAudioProcessorEditor()
@@ -75,7 +89,11 @@ DopplerEffectAudioProcessorEditor::~DopplerEffectAudioProcessorEditor()
 //==============================================================================
 void DopplerEffectAudioProcessorEditor::paint(juce::Graphics& g)
 {
-    g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
+    //g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
+
+    
+
+    //g.drawImageAt(background, 0, 0);
 
     g.setColour(juce::Colours::white);
     g.setFont(juce::FontOptions(15.0f));
@@ -86,35 +104,37 @@ void DopplerEffectAudioProcessorEditor::paint(juce::Graphics& g)
 
 void DopplerEffectAudioProcessorEditor::resized()
 {
-    cycleTimeSlider.setBounds({ 15, 35, 100, 300 });
-    cycleTimeLabel.setBounds({ cycleTimeSlider.getX() + 30,
+    cycleTimeSlider.setBounds({ 180, 25, 100, 250 });
+    cycleTimeLabel.setBounds({ cycleTimeSlider.getX()+40,
                                     cycleTimeSlider.getY() - 30,
                                     200, 50 });
 
-    maxDistanceSlider.setBounds({ 155, 35, 100, 300 });
-    maxDistanceLabel.setBounds({ maxDistanceSlider.getX() + 30,
+    maxDistanceSlider.setBounds({ 280, 25, 100, 250 });
+    maxDistanceLabel.setBounds({ maxDistanceSlider.getX()+40,
                                     maxDistanceSlider.getY() - 30,
                                     200, 50 });
 
-    vanishingPointSlider.setBounds({ 295, 35, 100, 300 });
-    vanishingPointLabel.setBounds({ vanishingPointSlider.getX() + 30,
+    vanishingPointSlider.setBounds({ 380, 25, 100, 250 });
+    vanishingPointLabel.setBounds({ vanishingPointSlider.getX()+40,
                                     vanishingPointSlider.getY() - 30,
                                     200, 50 });
 
     infiniteButton.setBounds(
         { cycleTimeSlider.getX(),
           cycleTimeSlider.getY() +
-          cycleTimeSlider.getHeight() + 15,
+          cycleTimeSlider.getHeight() + 80,
          30, 50 });
     infiniteButtonLabel.setBounds(
-        { cycleTimeSlider.getX() + infiniteButton.getWidth() + 15,
+        { cycleTimeSlider.getX() + infiniteButton.getWidth() + 5,
          infiniteButton.getY(),
          200,
          infiniteButton.getHeight() });
 
     bpmLabel.setBounds(
-        { infiniteButtonLabel.getX() + 200,
+        { infiniteButtonLabel.getX() + 180,
          infiniteButton.getY(),
          200,
          infiniteButton.getHeight() });
+
+    myImageComponent.setBoundsRelative(0.f, 0.f, 1.f, 1.f);
 }
